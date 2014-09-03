@@ -1,8 +1,8 @@
 # Photographic Mosaic
 This was created for an assignment for Computer Vision (COSC450 at The University of Otago). 
 ## Requirements
-- OpenCV library
-- Image Database such as (Labeled Faces in the Wild)[http://vis-www.cs.umass.edu/lfw/] _included list_
+- [OpenCV library](http://opencv.org/)
+- Image Database such as [Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/) _included list_
 
 
 ## Usage
