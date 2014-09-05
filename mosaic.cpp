@@ -67,8 +67,9 @@ int main (int argc, char *argv[]) {
 		exit(-1);
 	}
 
+	// Chooses between the adaptive method or all other methodds
 	if (method == "adaptive")
-		/* TODO: Break this abomination down into easier to understand methods or a recursive method */
+		//TODO: Break this abomination down into easier to understand methods or a recursive method
 	{
 		for (size_t x = 0; x <= mosaic.size().width-tileSize; x += tileSize) {
 			for (size_t y = 0; y <= mosaic.size().height-tileSize; y += tileSize) {
@@ -76,7 +77,7 @@ int main (int argc, char *argv[]) {
 				
 				int imageIndex = patchDatabase->imageMatch(mosaic(roi));
 				if (imageIndex == -1) {
-					// downsize to 16
+					// downsize to a half
 					int xhalfConst = x + tileSize;
 					int yhalfConst = y + tileSize;
 					for (int xhalf = x; xhalf < xhalfConst; xhalf += tileSize/2) {
@@ -84,45 +85,37 @@ int main (int argc, char *argv[]) {
 							cv::Rect roi(xhalf,yhalf,tileSize/2,tileSize/2);
 							imageIndex = patchDatabase->imageMatch(mosaic(roi));
 							if (imageIndex == -1) {
-								// downsize to 8
+								// downsize to quater
 								int xqtrConst = xhalf + tileSize/2;
 								int yqtrConst = yhalf + tileSize/2;
 								for (int xqtr = xhalf; xqtr < xqtrConst; xqtr += tileSize/4) {
 									for (int yqtr = yhalf; yqtr < yqtrConst; yqtr += tileSize/4) {
-										std::cout << "--------------- QUATER size tiles" << std::endl;
-										std::cout << "Xqtr:" << xqtr << "   Yqtr:" << yqtr << std::endl;
 										cv::Rect roi(xqtr,yqtr,tileSize/4,tileSize/4);
 										cv::Mat patchImage = patchDatabase->find(mosaic(roi));
 										cv::resize(patchImage, mosaic(roi), roi.size());
 										cv::imshow("Display", mosaic);
 										cv::waitKey(5);
 
-										imageIndex = -1; // reset!
+										imageIndex = -1; // reset image pointer!
 									}
 								}
 							} else {
-								std::cout << "--------------- HALF size tiles" << std::endl;
-								std::cout << "Xhalf:" << xhalf << "   Yhalf:" << yhalf << std::endl;
-								// turn into a draw image on canvas method
 								cv::Mat patchImage = patchDatabase->imageAtIndex(imageIndex);
 								cv::resize(patchImage, mosaic(roi), roi.size());
 								cv::imshow("Display", mosaic);
 								cv::waitKey(5);
 
-								imageIndex = -1; // reset!
+								imageIndex = -1; // reset image pointer!
 							}
 						}
 					}
 				} else {
-					std::cout << "--------------- FULL size tiles" << std::endl;
-					std::cout << "X:" << x << "   Y:" << y << std::endl;
-					// turn into a draw image on canvas method
 					cv::Mat patchImage = patchDatabase->imageAtIndex(imageIndex);
 					cv::resize(patchImage, mosaic(roi), roi.size());
 					cv::imshow("Display", mosaic);
 					cv::waitKey(5);
 
-					imageIndex = -1; // reset!
+					imageIndex = -1; // reset image pointer!
 				}
 			}
 		}

@@ -13,8 +13,8 @@ public:
 	virtual void add(const cv::Mat image) = 0;
 	virtual const cv::Mat find(const cv::Mat image) const = 0;
 	virtual size_t size() const = 0;
-    virtual int imageMatch(const cv::Mat image) const;
-    virtual const cv::Mat imageAtIndex(int index) const;
+    virtual int imageMatch(const cv::Mat image) const = 0;
+    virtual const cv::Mat imageAtIndex(int index) const = 0;
 
 private:
 
