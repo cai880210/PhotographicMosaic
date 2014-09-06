@@ -1,7 +1,6 @@
-images/
-lfw/
-output/
-setPath.sh
-skeleton.zip
-mosaic
-mosaic.o
+images
+lfw
+output
+*.sh
+*.zip
+*.o
