@@ -6,7 +6,7 @@ This was created for an assignment for Computer Vision (COSC450 at The Universit
 
 
 ## Usage
-Compile using hte inclued Make file. Ensuring OpenCV is installed and the Make file is updated to point to the library.
+Compile using the inclued Make file. Ensuring OpenCV is installed and the Make file is updated to point to the library.
 
 mosaic <input image> <list of images> <tile size> <method> <output image>
 
